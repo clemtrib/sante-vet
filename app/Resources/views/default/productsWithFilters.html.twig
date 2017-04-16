@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+            {% include 'default/productsList.html.twig'%}
+        </div>
+    </div>
+    <p><a href="{{ path('leboncoin' ) }}">Dernières annonces</a><p> 
+{% endblock %}
+

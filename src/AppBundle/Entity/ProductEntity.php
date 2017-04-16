@@ -74,7 +74,7 @@ class ProductEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="price", type="decimal", precision=6, scale=2, nullable=true)
+     * @ORM\Column(name="price", type="decimal", precision=18, scale=6, nullable=true)
      */
     private $price;
 

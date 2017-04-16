@@ -28,7 +28,7 @@ class Leboncoin {
      */
     public function __construct($em, $url) {
         $this->em = $em;
-        $this->_url = $url;
+        $this->url = $url;
         return true;
     }
 
@@ -122,7 +122,7 @@ class Leboncoin {
                 break;
             default:
             case 1:
-                $string = utf8_encode(trim($string));
+                $string = html_entity_decode(utf8_encode(trim($string)));
                 break;
         }
         return $string;
