@@ -11,11 +11,28 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ProductSearchType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('label')
-                ->add('min')
-                ->add('max')
-                ->add('OK', SubmitType::class)
-                ;
+        $builder->add('min', null, array(
+                        'label' => 'Prix minimum :', 
+                        'attr' => array('maxlength' => 7, 'class' => "col-6 col-md-1"),
+                        'label_attr' => array('class' => 'col-6 col-md-1'),        
+                    )
+                )
+                ->add('max', null, array(
+                        'label' => 'Prix maximum :', 
+                        'attr' => array('maxlength' => 7, 'class' => "col-6 col-md-1"),
+                        'label_attr' => array('class' => 'col-6 col-md-1'), 
+                    )
+                )
+                ->add('label', null, array(
+                        'label' => 'Libellé :', 
+                        'attr' => array('maxlength' => 60, 'class' => 'col-6 col-md-1'),
+                        'label_attr' => array('class' => 'col-6 col-md-1'),
+                    )
+                )
+                ->add('Filtrer', SubmitType::class, array(
+                        'attr' => array('class' => 'col-6 col-md-2'), 
+                    )
+                );
     }
     
     public function getName() {

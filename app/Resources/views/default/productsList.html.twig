@@ -1,6 +1,6 @@
-<table>
+<table id="products" class="table table-striped">
     <thead>
-        <tr>
+        <tr class="bg-info">
             <td>Nom</td>
             <td>Dept</td>
             <td>Ville</td>
@@ -15,12 +15,12 @@
                 <td>{{ product.dept }}</td>
                 <td>{{ product.city }}</td>
                 <td>{% if product.price %}{{ product.price|number_format(2, ',', '.') }} €{% endif %}</td>
-                <td><a href="{{ product.url }}" class="productLink" id="p-{{ product.id }}">voir</a></td>
+                <td><a href="{{ product.url }}" class="productLink" id="p-{{ product.id }}">Voir</a></td>
             </tr>
         {% endfor %}
     </tbody>
     <tfooter>
-        <tr>
+        <tr class="bg-info">
             <td>Nom</td>
             <td>Dept</td>
             <td>Ville</td>

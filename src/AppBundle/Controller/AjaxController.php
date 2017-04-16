@@ -5,66 +5,29 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-use AppBundle\Form\ProductSearchType;
-use AppBundle\Entity\ProductSearchEntity as ProductSearchEntity;
-
-class DefaultController extends Controller {
+class AjaxController extends Controller {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/ajax/visit/{id}", name="ajax_visit")
      */
-    public function indexAction(Request $request) {
+    public function visitAction($id) {
         
         $em = $this->getDoctrine()->getManager();
-         
-        $productSearch = new ProductSearchEntity();
-        
-        $form = $this->createForm(
-                ProductSearchType::class, 
-                $productSearch, 
-                array(
-                    'action' => $this->generateUrl('leboncoin'),
-                    'method' => 'POST'
-                )
-            );
-        
         $repository = $em->getRepository('AppBundle:ProductEntity');
-                
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $productSearch = $form->getData();
-            
-        }
-        
-        $products = $repository->findAllOrderBy(
-                'price',
-                (string) $productSearch->getLabel() ?? null,
-                (int) $productSearch->getMin() ?? null,
-                (int) $productSearch->getMax() ?? null
-            );
+        $productEntity = $repository->find($id);
+        $visit = $productEntity->getVisit();
+        $productEntity->setVisit($visit + 1);
+        $em->persist($productEntity);
+        $em->flush();
 
-
-        return $this->render('default/productsWithFilters.html.twig', array(
-            'products' => $products,
-            'form' => $form->createView()
-        ));
+        return new Response(json_encode(array(
+            'success' => true,
+            'errCode' => 200,
+            'message' => "Votre visite a bien été comptabilisée !"
+        )));
         
-    }
-    
-    /**
-     * @Route("/from/leboncoin", name="leboncoin")
-     */
-    public function listAction()
-    {
-        $products = $this->get('app.leboncoin')->getProductEntities(
-            'rhone_alpes',
-            'animaux',
-            100
-        );
-        return $this->render('default/productsWithoutFilters.html.twig', array(
-            "products" => $products
-        ));
     }
 
 }

@@ -24,7 +24,7 @@ class DefaultController extends Controller {
                 ProductSearchType::class, 
                 $productSearch, 
                 array(
-                    'action' => $this->generateUrl('leboncoin'),
+                    'action' => $this->generateUrl('homepage'),
                     'method' => 'POST'
                 )
             );

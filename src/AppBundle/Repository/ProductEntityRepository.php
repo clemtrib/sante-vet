@@ -22,14 +22,21 @@ DQL;
             FROM AppBundle:ProductEntity p
             WHERE p.{$orderby} IS NULL
 DQL;
+        
+        if ($name) {
+            $nameArr = explode(' ', $name);
+            foreach ($nameArr as $name) {
+                $dql1 .= $name ? " AND p.label LIKE '%{$name}%' " : '';
+                $dql2 .= $name ? " AND p.label LIKE '%{$name}%' " : '';
+            }
+        }
+            
         //
-        $dql1 .= $name ? " AND p.label LIKE '%{$name}%' " : '';
         $dql1 .= $min ? " AND p.price >= {$min} " : '';
         $dql1 .= $max ? " AND p.price <= {$max} " : '';
         $dql1 .= " ORDER BY p.{$orderby}";
         
         //
-        $dql2 .= $name ? " AND p.label LIKE '%{$name}%' " : '';
         $dql2 .= " ORDER BY p.{$orderby}";
         
         //
