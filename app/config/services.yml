@@ -6,4 +6,4 @@ parameters:
 services:
     app.leboncoin:
         class: AppBundle\Services\Leboncoin
-        arguments: ['%leboncoin.url%']
+        arguments: ['@doctrine.orm.entity_manager', '%leboncoin.url%']

@@ -23,7 +23,7 @@ class LeboncoinController extends Controller {
      */
     public function numberAction()
     {
-        $products = $this->get('app.leboncoin')->getList(
+        $products = $this->get('app.leboncoin')->getProductEntities(
             'rhone_alpes',
             'animaux',
             100

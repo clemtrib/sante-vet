@@ -8,6 +8,8 @@
 
 namespace AppBundle\Services;
 
+use AppBundle\Entity\ProductEntity as ProductEntity;
+
 /**
  * Description of Leboncoin
  *
@@ -15,14 +17,17 @@ namespace AppBundle\Services;
  */
 class Leboncoin {
 
-    private $_url;
+    private $em;
+    private $url;
+    private $productEntities;
     
     /**
      * 
      * @param type $url
      * @return boolean
      */
-    public function __construct($url) {
+    public function __construct($em, $url) {
+        $this->em = $em;
         $this->_url = $url;
         return true;
     }
@@ -34,7 +39,7 @@ class Leboncoin {
      * @param type $length
      * @return type
      */
-    public function getList($region, $category, $length) {
+    public function getProductEntities($region, $category, $length) {
         
         $articles = array();
         $page = 1;
@@ -70,24 +75,38 @@ class Leboncoin {
                     $dept = $t[1] ?? '';
                 }
                 
-                $articles[] = array(
+                $articles[] = new ProductEntity(array(
                     'ref' => $this->format($ref_arr[1], 1),
                     'url' => "https://leboncoin.fr/{$category}/{$this->format($ref_arr[1], 1)}.htm",
-                    'title' => $this->format($label_arr[1], 0),
+                    'label' => $this->format($label_arr[1], 0),
                     'category' => $category,
                     'region' => $region,
                     'dept' => $city && $dept ? $this->format($dept, 1) : $this->format($city, 1),
                     'city' => $city && $dept ? $this->format($city, 1) : '',
-                    'price' => isset($price_arr[1]) ? (int) $price_arr[1] : null
-                );
+                    'price' => isset($price_arr[1]) ? (int) $price_arr[1] : null,
+                    'visit' => 0
+                ));
             }
             
             $page++;
             
         }
 
-        return $articles;
+        $this->productEntities = $articles;
         
+        return $this->productEntities;
+        
+    }
+    
+    public function setProductEntities() {
+        $em = $this->em;
+        if (is_array($this->productEntities) && !empty($this->productEntities)) {
+            foreach ($this->productEntities as $productEntity) {
+                $em->persist($productEntity);
+            }
+            $em->flush();
+        }
+        return true;
     }
     
     /**
