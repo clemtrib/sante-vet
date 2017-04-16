@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nom</td>
+                        <td>Dept</td>
+                        <td>Ville</td>
+                        <td>Prix</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td>{{ product.title }}</td>
+                            <td>{{ product.dept }}</td>
+                            <td>{{ product.city }}</td>
+                            <td>{{ product.price }}</td>
+                            <td><a href="{{ product.url }}">voir</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfooter>
+                    <tr>
+                        <td>Nom</td>
+                        <td>Dept</td>
+                        <td>Ville</td>
+                        <td>Prix</td>
+                        <td></td>
+                    </tr>
+                    </footer>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
