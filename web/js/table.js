@@ -1,18 +1,20 @@
 $(function () {
     var table = $("#products")[0];
     
+    var currPage = 1;
+    
     var dir = []; // Utilisé pour savoir dans quel sens on doit réordonner la colonne
     $( "thead tr td" ).each(function() {
         dir.push("1");
     });
     
-    $("thead tr td").on("click", function (event) {
-        var column = $(this).attr('class');
+    function reorderEvent(obj) {
+        var column = obj.attr('class');
         if (column.substring(0, 7) !== "orderBy") {
             // La colonne ne peut pas être réordonnée
             return false;
         }
-        var type =  $(this).attr("data-type");
+        var type =  obj.attr("data-type");
         var columnId = column.substring(7, column.length);
         // On réordonne le tableau
         sortTable(
@@ -21,7 +23,51 @@ $(function () {
             dir[columnId] = 1 - dir[columnId], 
             type
         );
+    }
+    
+    function paginationEvent(obj) {
+        var nbResPage = obj.val(),
+            i = 0,
+            limitInf = nbResPage * (currPage - 1),
+            limitSup = (nbResPage * currPage) - 1,
+            pagerHtml = "";
+        
+        $( "tbody tr" ).each(function() {
+            $(this).hide();
+            if((i >= limitInf && i <= limitSup) || nbResPage === "T") {
+                $(this).show();
+            }
+            i++;
+        });
+
+        if (nbResPage !== "T") {
+            var nbPages = (i - 1) / nbResPage;
+            for (var j = 1; j <= Math.ceil(nbPages); j++) {
+                pagerHtml += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='' id='pl_" + j + "' class='pagination_link'>" + j + "</a>&nbsp;&nbsp;&nbsp;&nbsp;";
+            }
+        }
+        $(".pagination_pager").html(pagerHtml);
+        
+    }
+    
+    $("thead tr td, tfoot tr td").on("click", function () {
+        currPage = 1;
+        $(".pagination_select").val('T');
+        paginationEvent($(".pagination_select"));
+        reorderEvent($(this));
     });
+    
+    $(".pagination_select").on("change", function () {
+        currPage = 1;
+        paginationEvent($(this));
+    });
+    
+    $("#container").delegate(".pagination_link", "click", function (e) {
+        event.preventDefault();
+        currPage = $(this).attr('id').substring(3, $(this).attr('id').length);
+        paginationEvent($(".pagination_select"));
+    });
+    
 });
 
 /**

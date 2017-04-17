@@ -13,24 +13,24 @@ class ProductSearchType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('min', null, array(
                         'label' => 'Prix minimum :', 
-                        'attr' => array('maxlength' => 7, 'class' => "col-6 col-md-2"),
-                        'label_attr' => array('class' => 'col-6 col-md-2'),        
+                        'attr' => array('maxlength' => 7, 'class' => "col-md-2"),
+                        'label_attr' => array('class' => 'col-md-2'),        
                     )
                 )
                 ->add('max', null, array(
                         'label' => 'Prix maximum :', 
-                        'attr' => array('maxlength' => 7, 'class' => "col-6 col-md-2"),
-                        'label_attr' => array('class' => 'col-6 col-md-2'), 
+                        'attr' => array('maxlength' => 7, 'class' => "col-md-2"),
+                        'label_attr' => array('class' => 'col-md-2'), 
                     )
                 )
                 ->add('label', null, array(
                         'label' => 'Libellé :', 
-                        'attr' => array('maxlength' => 60, 'class' => 'col-6 col-md-2'),
-                        'label_attr' => array('class' => 'col-6 col-md-2'),
+                        'attr' => array('maxlength' => 60, 'class' => 'col-md-2'),
+                        'label_attr' => array('class' => 'col-md-2'),
                     )
                 )
                 ->add('Filtrer', SubmitType::class, array(
-                        'attr' => array('class' => 'col-6 col-md-4'), 
+                        'attr' => array('class' => 'col-md-4'), 
                     )
                 );
     }

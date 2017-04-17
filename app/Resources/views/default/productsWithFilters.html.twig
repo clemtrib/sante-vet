@@ -11,10 +11,28 @@
             {{ form_widget(form) }}
             {{ form_end(form) }}
             <br />
+            <br />
+            <div>
+                <label class="col-md-4">Nombre de résultats par page :</label>
+                <br />
+                <select class="pagination_select col-md-4">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="T" selected>Tous</option>
+                </select>
+                <br />
+                <div class="pagination_pager"></div>
+            </div>
+            <br />
             {% include 'default/productsList.html.twig'%}
+            <br />
+            <div class="pagination_pager"></div>
         </div>
     </div>
-    <p>&nbsp;<a href="{{ path('leboncoin' ) }}">Dernières annonces</a><p> 
+    <br />
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ path('leboncoin' ) }}">Dernières annonces</a><p> 
 {% endblock %}
 
 {% block javascripts %}

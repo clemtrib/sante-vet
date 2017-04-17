@@ -1,8 +1,8 @@
-<table id="products" class="table table-striped">
+<table id="products" class="table">
     <thead>
         <tr class="bg-info">
             <td class="orderBy0" data-type="string">Nom</td>
-            <td class="orderBy1" data-type="string">Departement</td>
+            <td class="orderBy1" data-type="string">Département</td>
             <td class="orderBy2" data-type="string">Ville</td>
             <td class="orderBy3" data-type="price">Prix</td>
             <td class=""></td>
@@ -19,13 +19,13 @@
             </tr>
         {% endfor %}
     </tbody>
-    <tfooter>
-        <tr class="bg-info">
-            <td>Nom</td>
-            <td>Departement</td>
-            <td>Ville</td>
-            <td>Prix</td>
-            <td></td>
+    <tfoot class="bg-info">
+        <tr>
+            <td class="orderBy0" data-type="string">Nom</td>
+            <td class="orderBy1" data-type="string">Département</td>
+            <td class="orderBy2" data-type="string">Ville</td>
+            <td class="orderBy3" data-type="price">Prix</td>
+            <td class=""></td>
         </tr>
-        </footer>
-</table>  
+    </tfoot>
+</table>
