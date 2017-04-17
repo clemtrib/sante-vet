@@ -11,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductEntityRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class ProductEntity
-{
+class ProductEntity {
+
     /**
      * @var int
      *
@@ -35,7 +35,7 @@ class ProductEntity
      * @ORM\Column(name="label", type="string", length=255)
      */
     private $label;
-    
+
     /**
      * @var string
      *
@@ -84,14 +84,14 @@ class ProductEntity
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
-    
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
-    
+
     /**
      * @var int
      *
@@ -99,14 +99,12 @@ class ProductEntity
      */
     private $visit;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -117,8 +115,7 @@ class ProductEntity
      *
      * @return ProductEntity
      */
-    public function setRef($ref)
-    {
+    public function setRef($ref) {
         $this->ref = $ref;
 
         return $this;
@@ -129,11 +126,10 @@ class ProductEntity
      *
      * @return string
      */
-    public function getRef()
-    {
+    public function getRef() {
         return $this->ref;
     }
-    
+
     /**
      * Set label
      *
@@ -141,8 +137,7 @@ class ProductEntity
      *
      * @return ProductDetailEntity
      */
-    public function setLabel($label)
-    {
+    public function setLabel($label) {
         $this->label = $label;
 
         return $this;
@@ -153,8 +148,7 @@ class ProductEntity
      *
      * @return string
      */
-    public function getLabel()
-    {
+    public function getLabel() {
         return $this->label;
     }
 
@@ -165,8 +159,7 @@ class ProductEntity
      *
      * @return ProductDetailEntity
      */
-    public function setUrl($url)
-    {
+    public function setUrl($url) {
         $this->url = $url;
 
         return $this;
@@ -177,8 +170,7 @@ class ProductEntity
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -189,8 +181,7 @@ class ProductEntity
      *
      * @return ProductEntity
      */
-    public function setCategory($category)
-    {
+    public function setCategory($category) {
         $this->category = $category;
 
         return $this;
@@ -201,8 +192,7 @@ class ProductEntity
      *
      * @return string
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
 
@@ -213,8 +203,7 @@ class ProductEntity
      *
      * @return ProductEntity
      */
-    public function setRegion($region)
-    {
+    public function setRegion($region) {
         $this->region = $region;
 
         return $this;
@@ -225,8 +214,7 @@ class ProductEntity
      *
      * @return string
      */
-    public function getRegion()
-    {
+    public function getRegion() {
         return $this->region;
     }
 
@@ -237,8 +225,7 @@ class ProductEntity
      *
      * @return ProductEntity
      */
-    public function setDept($dept)
-    {
+    public function setDept($dept) {
         $this->dept = $dept;
 
         return $this;
@@ -249,8 +236,7 @@ class ProductEntity
      *
      * @return string
      */
-    public function getDept()
-    {
+    public function getDept() {
         return $this->dept;
     }
 
@@ -261,8 +247,7 @@ class ProductEntity
      *
      * @return ProductEntity
      */
-    public function setCity($city)
-    {
+    public function setCity($city) {
         $this->city = $city;
 
         return $this;
@@ -273,8 +258,7 @@ class ProductEntity
      *
      * @return string
      */
-    public function getCity()
-    {
+    public function getCity() {
         return $this->city;
     }
 
@@ -285,8 +269,7 @@ class ProductEntity
      *
      * @return ProductEntity
      */
-    public function setPrice($price)
-    {
+    public function setPrice($price) {
         $this->price = $price;
 
         return $this;
@@ -297,8 +280,7 @@ class ProductEntity
      *
      * @return string
      */
-    public function getPrice()
-    {
+    public function getPrice() {
         return $this->price;
     }
 
@@ -311,8 +293,7 @@ class ProductEntity
      * 
      * @return ProductEntity
      */
-    public function setCreatedAt($createdAt)
-    {
+    public function setCreatedAt($createdAt) {
         $this->createdAt = new \DateTime();
 
         return $this;
@@ -323,11 +304,10 @@ class ProductEntity
      *
      * @return \DateTime
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->createdAt;
     }
-    
+
     /**
      * Set createdAt
      *
@@ -337,8 +317,7 @@ class ProductEntity
      *
      * @return ProductEntity
      */
-    public function setUpdatedAt($updatedAt)
-    {
+    public function setUpdatedAt($updatedAt) {
         $this->updatedAt = new \DateTime();
 
         return $this;
@@ -349,11 +328,10 @@ class ProductEntity
      *
      * @return \DateTime
      */
-    public function getUpdatedAt()
-    {
+    public function getUpdatedAt() {
         return $this->updatedAt;
     }
-    
+
     /**
      * Set visit
      *
@@ -361,8 +339,7 @@ class ProductEntity
      *
      * @return ProductDetailEntity
      */
-    public function setVisit($visit)
-    {
+    public function setVisit($visit) {
         $this->visit = $visit;
 
         return $this;
@@ -373,11 +350,10 @@ class ProductEntity
      *
      * @return int
      */
-    public function getVisit()
-    {
+    public function getVisit() {
         return $this->visit;
     }
-    
+
     /**
      * 
      * @param array $datas
@@ -398,4 +374,3 @@ class ProductEntity
     }
 
 }
-

@@ -7,15 +7,8 @@ namespace AppBundle\Entity;
  *
  * 
  */
-class ProductSearchEntity
-{
+class ProductSearchEntity {
 
-    /**
-     * @var int
-     *
-     */
-    private $id;
-    
     /**
      * @var string
      */
@@ -32,24 +25,13 @@ class ProductSearchEntity
     private $max;
 
     /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    
-    /**
      * Set label
      *
      * @param string $label
      *
      * @return ProductSearchEntity
      */
-    public function setLabel($label)
-    {
+    public function setLabel($label) {
         $this->label = $label;
 
         return $this;
@@ -60,8 +42,7 @@ class ProductSearchEntity
      *
      * @return string
      */
-    public function getLabel()
-    {
+    public function getLabel() {
         return $this->label;
     }
 
@@ -72,8 +53,7 @@ class ProductSearchEntity
      *
      * @return ProductSearchEntity
      */
-    public function setMin($min)
-    {
+    public function setMin($min) {
         $this->min = $min;
 
         return $this;
@@ -84,8 +64,7 @@ class ProductSearchEntity
      *
      * @return string
      */
-    public function getMin()
-    {
+    public function getMin() {
         return $this->min;
     }
 
@@ -96,8 +75,7 @@ class ProductSearchEntity
      *
      * @return ProductSearchEntity
      */
-    public function setMax($max)
-    {
+    public function setMax($max) {
         $this->max = $max;
 
         return $this;
@@ -108,9 +86,8 @@ class ProductSearchEntity
      *
      * @return int
      */
-    public function getMax()
-    {
+    public function getMax() {
         return $this->max;
     }
-}
 
+}

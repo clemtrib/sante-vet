@@ -1,9 +1,6 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/service_container.html
-parameters:
-    leboncoin.url: www.leboncoin.fr
-
 services:
     app.leboncoin:
         class: AppBundle\Services\Leboncoin
-        arguments: ['@doctrine.orm.entity_manager', '%leboncoin.url%']
+        arguments: ['@doctrine.orm.entity_manager']

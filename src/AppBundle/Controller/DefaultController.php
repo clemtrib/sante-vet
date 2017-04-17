@@ -57,14 +57,17 @@ class DefaultController extends Controller {
      */
     public function listAction()
     {
+        
         $products = $this->get('app.leboncoin')->getProductEntities(
             'rhone_alpes',
             'animaux',
             100
         );
+        
         return $this->render('default/productsWithoutFilters.html.twig', array(
             "products" => $products
         ));
+        
     }
 
 }

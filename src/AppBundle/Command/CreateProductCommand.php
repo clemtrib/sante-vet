@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -14,12 +8,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
- * Description of CreateArticleCommand
+ * 
  *
  * @author Clément
  */
 class CreateProductCommand extends ContainerAwareCommand {
 
+    /**
+     * 
+     * 
+     */
     protected function configure() {
         $this
             ->setName('app:create-product')
@@ -30,7 +28,15 @@ class CreateProductCommand extends ContainerAwareCommand {
             ->addArgument('limit', InputArgument::REQUIRED, 'The limit is requiered. Ex: 100');
     }
 
+    /**
+     * 
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return type
+     */
     protected function execute(InputInterface $input, OutputInterface $output) {
+        
+        //
         $output->writeln([
             '============================================',
             'Import a new products list from leboncoin.fr',
@@ -38,9 +44,8 @@ class CreateProductCommand extends ContainerAwareCommand {
             '',
         ]);
         
+        // On importe la liste et on la sauvegarde en base
         $container = $this->getApplication()->getKernel()->getContainer();
-        
-        //
         $service = $container->get('app.leboncoin');
         $service->getProductEntities(
                 $input->getArgument('region'),
